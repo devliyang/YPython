@@ -6,10 +6,14 @@ import ylog
 
 def save_str_to_file(text, path):
     make_dir_if_not_exist(path)
-    _file = open(path, 'w+')
-    _file.write(text)
-    _file.close()
-    print 'Save to "{}" success!'.format(path)
+    try:
+        _file = open(path, 'w+')
+        _file.write(text)
+        _file.close()
+    except IOError:
+        print 'Open "{}" error when saving to excel: please check if the file is occupied'.format(path)
+    else:
+        print 'Save to "{}" success!'.format(path)
 
 
 def make_dir_if_not_exist(path):
